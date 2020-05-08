@@ -21,7 +21,7 @@ public class DoctorService {
 	}
 	
 	@Transactional
-	public List<Doctor> show()
+	public List<Doctor> getAllDoctor()
 	{
 		return DoctorDao.findAll();
 	}

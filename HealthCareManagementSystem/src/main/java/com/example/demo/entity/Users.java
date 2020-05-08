@@ -16,14 +16,11 @@ import javax.validation.constraints.Size;
 @Table(name="Users")
 public class Users {
 	
-	
 @Id
-@Column(name="user_Id")
+@Column(name="userId")
 @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="user_seq")
 @SequenceGenerator(sequenceName="user_seq",initialValue=00,allocationSize=1,name="user_seq")
 private String userId;
-
-
 
 @NotEmpty(message="user password is mendatory")
 @Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,14}$")
@@ -39,13 +36,17 @@ private String userName;
 @Column(name="contactNo")
 private Long contactNo;
 
+public Users() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
 @Column(name="userRole")
 private String userRole;
 
 @NotEmpty(message="emailid is mendatory")
 @Column(name="emailId")
 private String emailId;
-
 
 
 public String getUserId() {
@@ -114,11 +115,5 @@ public Users(String userId, String userPassword, String userName, Long contactNo
 	this.emailId = emailId;
 	
 }
-
-public Users() {
-	super();
-	// TODO Auto-generated constructor stub
-}
-
 
 }

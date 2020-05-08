@@ -28,7 +28,7 @@ public class DoctorController {
 	 @RequestMapping (value="/showDoctor", method= RequestMethod.GET)
    public List<Doctor> getAllDoctor()
    {
-   return doctorService.show();
+   return doctorService.getAllDoctor();
    }
 	
 	
