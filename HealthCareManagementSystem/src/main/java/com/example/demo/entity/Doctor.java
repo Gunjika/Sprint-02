@@ -18,7 +18,7 @@ public class Doctor {
 	@Column(name="doctor_id")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="doctor_seq")
 	@SequenceGenerator(sequenceName="doctor_seq",initialValue=00,allocationSize=1,name="doctor_seq")
-	private String doctorId;
+	private long doctorId;
 	
 	@NotEmpty(message="doctor name is mendatory")
 	@Column(name="doctorName")
@@ -29,15 +29,15 @@ public class Doctor {
 	private String doctorSpecialization;
 	
 	@NotNull(message="contact must be mendatory")
-	@Size(max=10,message="number must be of 10 digit")
+	@Size(max=2,message="number must be of 10 digit")
 	@Column(name="contactNo")
-	private Long contactNo;
+	private int contactNo;
 
-	public String getDoctorId() {
+	public long getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(String doctorId) {
+	public void setDoctorId(long doctorId) {
 		this.doctorId = doctorId;
 	}
 
@@ -57,11 +57,11 @@ public class Doctor {
 		this.doctorSpecialization = doctorSpecialization;
 	}
 
-	public Long getContactNo() {
+	public int getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(Long contactNo) {
+	public void setContactNo(int contactNo) {
 		this.contactNo = contactNo;
 	}
 
@@ -76,9 +76,7 @@ public class Doctor {
 				+ ", contactNo=" + contactNo + "]";
 	}
 
-	public Doctor(String doctorId, @NotEmpty(message = "doctor name is mendatory") String doctorName,
-			@NotEmpty(message = "doctor Specialization is mendatory") String doctorSpecialization,
-			@NotNull(message = "contact must be mendatory") @Size(max = 10, message = "number must be of 10 digit") Long contactNo) {
+	public Doctor(long doctorId, String doctorName, String doctorSpecialization, int contactNo) {
 		super();
 		this.doctorId = doctorId;
 		this.doctorName = doctorName;

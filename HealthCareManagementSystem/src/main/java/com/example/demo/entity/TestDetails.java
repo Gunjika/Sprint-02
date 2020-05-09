@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Test")
-public class Test {
+public class TestDetails {
 @Id
 @Column(name="test_Id")
 @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="test_seq")
@@ -40,14 +40,13 @@ public void setTestName(String testName) {
 public String toString() {
 	return "Test [testId=" + testId + ", testName=" + testName + "]";
 }
-
-public Test(String testId, String testName) {
+public TestDetails(String testId, String testName) {
 	super();
 	this.testId = testId;
 	this.testName = testName;
 }
 
-public Test() {
+public TestDetails() {
 	super();
 	// TODO Auto-generated constructor stub
 }

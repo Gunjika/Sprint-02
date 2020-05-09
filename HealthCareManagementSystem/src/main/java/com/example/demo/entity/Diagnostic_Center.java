@@ -27,9 +27,9 @@ public class Diagnostic_Center {
 	@Column(name="centerName")
 	private String centerName;
 	
-	@OneToMany(targetEntity=Test.class, cascade=CascadeType.ALL)
+	@OneToMany(targetEntity=TestDetails.class, cascade=CascadeType.ALL)
 	@JoinColumn(name="center_Id", referencedColumnName="center_Id")
-	private List<Test> test =new ArrayList<Test>();
+	private List<TestDetails> test =new ArrayList<TestDetails>();
 
 	public String getCenterId() {
 		return centerId;
@@ -47,11 +47,11 @@ public class Diagnostic_Center {
 		this.centerName = centerName;
 	}
 
-	public List<Test> getTest() {
+	public List<TestDetails> getTest() {
 		return test;
 	}
 
-	public void setTest(List<Test> test) {
+	public void setTest(List<TestDetails> test) {
 		this.test = test;
 	}
 
@@ -60,7 +60,7 @@ public class Diagnostic_Center {
 		return "Diagnostic_Center [centerId=" + centerId + ", centerName=" + centerName + ", test=" + test + "]";
 	}
 
-	public Diagnostic_Center(String centerId, String centerName, List<Test> test) {
+	public Diagnostic_Center(String centerId, String centerName, List<TestDetails> test) {
 		super();
 		this.centerId = centerId;
 		this.centerName = centerName;
