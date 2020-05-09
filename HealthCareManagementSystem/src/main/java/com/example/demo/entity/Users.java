@@ -19,7 +19,7 @@ public class Users {
 @Id
 @Column(name="userId")
 @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="user_seq")
-@SequenceGenerator(sequenceName="user_seq",initialValue=00,allocationSize=1,name="user_seq")
+@SequenceGenerator(sequenceName="user_seq",initialValue=100,allocationSize=1,name="user_seq")
 private String userId;
 
 @NotEmpty(message="user password is mendatory")

@@ -14,7 +14,7 @@ public class TestDetails {
 @Id
 @Column(name="test_Id")
 @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="test_seq")
-@SequenceGenerator(sequenceName="test_seq",initialValue=00,allocationSize=1,name="test_seq")
+@SequenceGenerator(sequenceName="test_seq",initialValue=100,allocationSize=1,name="test_seq")
 	private String testId;
 
 @Column(name="testName")

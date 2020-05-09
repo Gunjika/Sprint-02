@@ -21,7 +21,7 @@ public class Diagnostic_Center {
 	@Id
 	@Column(name="center_id")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="center_seq")
-	@SequenceGenerator(sequenceName="center_seq",initialValue=00,allocationSize=1,name="center_seq")
+	@SequenceGenerator(sequenceName="center_seq",initialValue=100,allocationSize=1,name="center_seq")
 	private String centerId;
 	
 	@Column(name="centerName")

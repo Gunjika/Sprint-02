@@ -17,7 +17,7 @@ public class Doctor {
 	@Id
 	@Column(name="doctor_id")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="doctor_seq")
-	@SequenceGenerator(sequenceName="doctor_seq",initialValue=00,allocationSize=1,name="doctor_seq")
+	@SequenceGenerator(sequenceName="doctor_seq",initialValue=100,allocationSize=1,name="doctor_seq")
 	private long doctorId;
 	
 	@NotEmpty(message="doctor name is mendatory")
@@ -29,7 +29,6 @@ public class Doctor {
 	private String doctorSpecialization;
 	
 	@NotNull(message="contact must be mendatory")
-	@Size(max=2,message="number must be of 10 digit")
 	@Column(name="contactNo")
 	private int contactNo;
 
