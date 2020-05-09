@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.capgemini.hms.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.entity.Doctor;
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.repository.DoctorDao;
+import com.capgemini.hms.entity.Doctor;
+import com.capgemini.hms.exception.ResourceNotFoundException;
+import com.capgemini.hms.repository.DoctorDao;
 @Service
 @Transactional
 public class DoctorServiceImpl implements DoctorService{

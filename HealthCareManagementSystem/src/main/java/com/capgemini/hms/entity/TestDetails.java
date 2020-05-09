@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.capgemini.hms.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package com.capgemini.hms.service;
 
 import java.util.List;
 
-import com.example.demo.entity.Doctor;
+import com.capgemini.hms.entity.Doctor;
 
 public interface DoctorService {
 	Doctor createDoctor(Doctor doctor);

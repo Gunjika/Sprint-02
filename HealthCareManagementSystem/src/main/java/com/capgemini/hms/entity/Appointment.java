@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.capgemini.hms.entity;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package com.example.demo.exception;
+package com.capgemini.hms.exception;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 

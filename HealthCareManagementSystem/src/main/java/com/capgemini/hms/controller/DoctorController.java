@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.capgemini.hms.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Doctor;
-import com.example.demo.service.DoctorService;
+import com.capgemini.hms.entity.Doctor;
+import com.capgemini.hms.service.DoctorService;
 
 
 @RestController

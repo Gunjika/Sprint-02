@@ -1,8 +1,8 @@
-package com.example.demo.repository;
+package com.capgemini.hms.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.entity.Doctor;
+import com.capgemini.hms.entity.Doctor;
 
 public interface DoctorDao extends JpaRepository<Doctor, Long>{
 
