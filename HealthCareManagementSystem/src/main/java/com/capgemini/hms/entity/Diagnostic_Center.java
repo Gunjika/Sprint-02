@@ -1,6 +1,6 @@
 package com.capgemini.hms.entity;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name="Diagnostic_Center")
 public class Diagnostic_Center {
@@ -25,13 +28,6 @@ public class Diagnostic_Center {
 	@SequenceGenerator(sequenceName="center_seq",initialValue=2000,allocationSize=1,name="center_seq")
 	private String centerId;
 	
-	@Column(name="centerName")
-	private String centerName;
-	
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="center_Id", referencedColumnName="center_Id")
-	private List<Tests> test =new ArrayList<Tests>();
-
 	public String getCenterId() {
 		return centerId;
 	}
@@ -39,6 +35,21 @@ public class Diagnostic_Center {
 	public void setCenterId(String centerId) {
 		this.centerId = centerId;
 	}
+
+	@Column(name="centerName")
+	private String centerName;
+	
+	@OneToMany(fetch=FetchType.EAGER, targetEntity = Tests.class, cascade = CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JoinColumn(name = "center_id", referencedColumnName = "center_id")
+	public List<Tests> listOftests;
+
+	@OneToMany(fetch=FetchType.EAGER,targetEntity = Appointment.class, cascade = CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JoinColumn(name = "center_id", referencedColumnName = "center_id")
+	private List<Appointment> appointment;
+
+	
 
 	public String getCenterName() {
 		return centerName;
@@ -48,24 +59,36 @@ public class Diagnostic_Center {
 		this.centerName = centerName;
 	}
 
-	public List<Tests> getTest() {
-		return test;
+	public List<Tests> getListOftests() {
+		return listOftests;
 	}
 
-	public void setTest(List<Tests> test) {
-		this.test = test;
+	public void setListOftests(List<Tests> listOftests) {
+		this.listOftests = listOftests;
+	}
+
+	public List<Appointment> getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(List<Appointment> appointment) {
+		this.appointment = appointment;
 	}
 
 	@Override
 	public String toString() {
-		return "Diagnostic_Center [centerId=" + centerId + ", centerName=" + centerName + ", test=" + test + "]";
+		return "DiagnosticCenter [centerId=" + centerId + ", centerName=" + centerName + ", listOftests=" + listOftests
+				+ ", appointment=" + appointment + "]";
 	}
 
-	public Diagnostic_Center(String centerId, String centerName, List<Tests> test) {
+
+	public Diagnostic_Center(String centerId, String centerName, List<Tests> listOftests,
+			List<Appointment> appointment) {
 		super();
 		this.centerId = centerId;
 		this.centerName = centerName;
-		this.test = test;
+		this.listOftests = listOftests;
+		this.appointment = appointment;
 	}
 
 	public Diagnostic_Center() {

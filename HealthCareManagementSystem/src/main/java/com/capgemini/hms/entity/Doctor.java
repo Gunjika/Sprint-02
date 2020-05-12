@@ -17,7 +17,7 @@ public class Doctor {
 	@Id
 	@Column(name="doctor_id")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="doctor_seq")
-	@SequenceGenerator(sequenceName="doctor_seq",initialValue=100,allocationSize=1,name="doctor_seq")
+	@SequenceGenerator(sequenceName="doctor_seq",initialValue=1010,allocationSize=1,name="doctor_seq")
 	private long doctorId;
 	
 	@NotEmpty(message="doctor name is mendatory")

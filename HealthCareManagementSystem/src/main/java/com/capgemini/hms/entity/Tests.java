@@ -15,59 +15,60 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Test")
+@Table(name = "Test_table")
 public class Tests {
-@Id
-@Column(name="test_Id")
-@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="test_seq")
-@SequenceGenerator(sequenceName="test_seq",initialValue=100,allocationSize=1,name="test_seq")
-	private String testId;
+	@Id
+	@Column(name = "test_Id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "test_seq")
+	@SequenceGenerator(sequenceName = "test_seq", initialValue = 1, allocationSize = 1, name = "test_seq")
+	private Integer testId;
 
-@Column(name="testName")
+	@Column(name = "testName")
 	private String testName;
 
-@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-@JoinColumn(name="test_Id",referencedColumnName="test_Id")
-private List<Doctor> doctorList;
+	@OneToMany(fetch = FetchType.EAGER, targetEntity = Doctor.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "test_Id", referencedColumnName = "test_Id")
+	private List<Doctor> doctorlist;
 
-public List<Doctor> getDoctorList() {
-	return doctorList;
-}
+	public Integer getTestId() {
+		return testId;
+	}
 
-public void setDoctorList(List<Doctor> doctorList) {
-	this.doctorList = doctorList;
-}
+	public void setTestId(Integer testId) {
+		this.testId = testId;
+	}
 
-public String getTestId() {
-	return testId;
-}
+	public String getTestName() {
+		return testName;
+	}
 
-public void setTestId(String testId) {
-	this.testId = testId;
-}
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
 
-public String getTestName() {
-	return testName;
-}
+	public List<Doctor> getDoctorlist() {
+		return doctorlist;
+	}
 
-public void setTestName(String testName) {
-	this.testName = testName;
-}
+	public void setDoctorlist(List<Doctor> doctorlist) {
+		this.doctorlist = doctorlist;
+	}
 
-@Override
-public String toString() {
-	return "Test [testId=" + testId + ", testName=" + testName + "]";
-}
-public Tests(String testId, String testName) {
-	super();
-	this.testId = testId;
-	this.testName = testName;
-}
+	@Override
+	public String toString() {
+		return "Tests [testId=" + testId + ", testName=" + testName + ", doctorlist=" + doctorlist + "]";
+	}
 
-public Tests() {
-	super();
-	// TODO Auto-generated constructor stub
-}
+	public Tests(Integer testId, String testName, List<Doctor> doctorlist) {
+		super();
+		this.testId = testId;
+		this.testName = testName;
+		this.doctorlist = doctorlist;
+	}
 
+	public Tests() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 }

@@ -21,99 +21,73 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(name="Appointment")
 public class Appointment {
 	@Id
-	@Column(name="appointment_Id")
-	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="appointment_seq")
-	@SequenceGenerator(sequenceName="appointment_seq",initialValue=1000,allocationSize=1,name="appointment_seq")
-	private Long appointmentId;
-	
-	@Column(name="Appointment_DateAndTime")
+	@Column(name = "appointment_Id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointment_seq")
+	@SequenceGenerator(sequenceName = "appointment_seq", initialValue=1000,allocationSize = 1, name = "appointment_seq")
+	private Integer appointmentId;
+
+	@Column(name = "Appointment_DateAndTime")
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime dateAndtime;
-	
-	@Column(name="approved")
+	private LocalDateTime appointmentDateAndTime;
+
+	@Column(name = "approved")
 	private boolean approved;
-	
-	@ManyToOne( targetEntity=Diagnostic_Center.class,cascade= CascadeType.ALL)
-	@JoinColumn(name="center_Id", referencedColumnName="center_Id")
-	private Diagnostic_Center diagnostic_center;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="userId", referencedColumnName="userId")
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_Id", referencedColumnName = "user_Id")
 	private Users users;
 
-	
-	public Long getAppointmentId() {
+	public Integer getAppointmentId() {
 		return appointmentId;
 	}
 
-
-	public void setAppointmentId(Long appointmentId) {
+	public void setAppointmentId(Integer appointmentId) {
 		this.appointmentId = appointmentId;
 	}
 
-
-	public LocalDateTime getDateAndtime() {
-		return dateAndtime;
+	public LocalDateTime getAppointmentDateAndTime() {
+		return appointmentDateAndTime;
 	}
 
-
-	public void setDateAndtime(LocalDateTime dateAndtime) {
-		this.dateAndtime = dateAndtime;
+	public void setAppointmentDateAndTime(LocalDateTime appointmentDateAndTime) {
+		this.appointmentDateAndTime = appointmentDateAndTime;
 	}
-
 
 	public boolean isApproved() {
 		return approved;
 	}
 
-
 	public void setApproved(boolean approved) {
 		this.approved = approved;
 	}
-
-
-	public Diagnostic_Center getDiagnostic_center() {
-		return diagnostic_center;
-	}
-
-
-	public void setDiagnostic_center(Diagnostic_Center diagnostic_center) {
-		this.diagnostic_center = diagnostic_center;
-	}
-
 
 	public Users getUsers() {
 		return users;
 	}
 
-
 	public void setUsers(Users users) {
 		this.users = users;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Appointment [appointmentId=" + appointmentId + ", dateAndtime=" + dateAndtime + ", approved=" + approved
-				+ ", diagnostic_center=" + diagnostic_center + ", users=" + users + "]";
+		return "Appointment [appointmentId=" + appointmentId + ", appointmentDateAndTime=" + appointmentDateAndTime
+				+ ", approved=" + approved + ", users=" + users + "]";
 	}
 
-
-	public Appointment(Long appointmentId, LocalDateTime dateAndtime, boolean approved,
-			Diagnostic_Center diagnostic_center, Users users) {
+	public Appointment(Integer appointmentId, LocalDateTime appointmentDateAndTime, boolean approved, Users users) {
 		super();
 		this.appointmentId = appointmentId;
-		this.dateAndtime = dateAndtime;
+		this.appointmentDateAndTime = appointmentDateAndTime;
 		this.approved = approved;
-		this.diagnostic_center = diagnostic_center;
 		this.users = users;
 	}
-
 
 	public Appointment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	
 
