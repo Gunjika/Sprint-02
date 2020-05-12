@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.capgemini.hms.entity.Doctor;
-import com.capgemini.hms.exception.ResourceNotFoundException;
+import com.capgemini.hms.exception.DoctorNotFoundException;
 import com.capgemini.hms.repository.DoctorDao;
 @Service
 @Transactional
@@ -36,7 +36,7 @@ public class DoctorServiceImpl implements DoctorService{
 			return doctorUpdate;
 		}
 		else {
-			throw new ResourceNotFoundException("Record not found with id : "+doctor.getDoctorId());
+			throw new DoctorNotFoundException("Record not found with id : "+doctor.getDoctorId());
 		}
 	}
 
@@ -56,7 +56,7 @@ public class DoctorServiceImpl implements DoctorService{
 		}
 		else
 		{
-			throw new ResourceNotFoundException("Record not found with id : "+doctorId);
+			throw new DoctorNotFoundException("Record not found with id : "+doctorId);
 		}
 	}
 
@@ -70,7 +70,7 @@ public class DoctorServiceImpl implements DoctorService{
 		}
 		else
 		{
-			throw new ResourceNotFoundException("Record not found with id : "+doctorId);
+			throw new DoctorNotFoundException("Record not found with id : "+doctorId);
 		}
 	}
 
