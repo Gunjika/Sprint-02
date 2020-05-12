@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,15 +22,15 @@ public class Diagnostic_Center {
 	@Id
 	@Column(name="center_id")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="center_seq")
-	@SequenceGenerator(sequenceName="center_seq",initialValue=100,allocationSize=1,name="center_seq")
+	@SequenceGenerator(sequenceName="center_seq",initialValue=2000,allocationSize=1,name="center_seq")
 	private String centerId;
 	
 	@Column(name="centerName")
 	private String centerName;
 	
-	@OneToMany(targetEntity=TestDetails.class, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="center_Id", referencedColumnName="center_Id")
-	private List<TestDetails> test =new ArrayList<TestDetails>();
+	private List<Tests> test =new ArrayList<Tests>();
 
 	public String getCenterId() {
 		return centerId;
@@ -47,11 +48,11 @@ public class Diagnostic_Center {
 		this.centerName = centerName;
 	}
 
-	public List<TestDetails> getTest() {
+	public List<Tests> getTest() {
 		return test;
 	}
 
-	public void setTest(List<TestDetails> test) {
+	public void setTest(List<Tests> test) {
 		this.test = test;
 	}
 
@@ -60,7 +61,7 @@ public class Diagnostic_Center {
 		return "Diagnostic_Center [centerId=" + centerId + ", centerName=" + centerName + ", test=" + test + "]";
 	}
 
-	public Diagnostic_Center(String centerId, String centerName, List<TestDetails> test) {
+	public Diagnostic_Center(String centerId, String centerName, List<Tests> test) {
 		super();
 		this.centerId = centerId;
 		this.centerName = centerName;

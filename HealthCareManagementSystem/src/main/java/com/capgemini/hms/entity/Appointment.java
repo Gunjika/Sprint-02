@@ -23,7 +23,7 @@ public class Appointment {
 	@Id
 	@Column(name="appointment_Id")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="appointment_seq")
-	@SequenceGenerator(sequenceName="appointment_seq",initialValue=011010,allocationSize=1,name="appointment_seq")
+	@SequenceGenerator(sequenceName="appointment_seq",initialValue=1000,allocationSize=1,name="appointment_seq")
 	private Long appointmentId;
 	
 	@Column(name="Appointment_DateAndTime")
