@@ -1,15 +1,23 @@
 package com.capgemini.hms.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="Doctor")
@@ -31,9 +39,33 @@ public class Doctor {
 	@NotNull(message="contact must be mendatory")
 	@Column(name="contactNo")
 	private int contactNo;
+	
+	@OneToMany(fetch=FetchType.EAGER,targetEntity = DoctorAppointment.class, cascade = CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
+	private List<DoctorAppointment> docAppointment;
+
+	public Doctor(long doctorId, @NotEmpty(message = "doctor name is mendatory") String doctorName,
+			@NotEmpty(message = "doctor Specialization is mendatory") String doctorSpecialization,
+			@NotNull(message = "contact must be mendatory") int contactNo, List<DoctorAppointment> docAppointment) {
+		super();
+		this.doctorId = doctorId;
+		this.doctorName = doctorName;
+		this.doctorSpecialization = doctorSpecialization;
+		this.contactNo = contactNo;
+		this.docAppointment = docAppointment;
+	}
 
 	public long getDoctorId() {
 		return doctorId;
+	}
+
+	public List<DoctorAppointment> getDocAppointment() {
+		return docAppointment;
+	}
+
+	public void setDocAppointment(List<DoctorAppointment> docAppointment) {
+		this.docAppointment = docAppointment;
 	}
 
 	public void setDoctorId(long doctorId) {
@@ -71,8 +103,8 @@ public class Doctor {
 
 	@Override
 	public String toString() {
-		return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName + ", doctorSpecialization=" + doctorSpecialization
-				+ ", contactNo=" + contactNo + "]";
+		return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName + ", doctorSpecialization="
+				+ doctorSpecialization + ", contactNo=" + contactNo + ", docAppointment=" + docAppointment + "]";
 	}
 
 	public Doctor(long doctorId, String doctorName, String doctorSpecialization, int contactNo) {

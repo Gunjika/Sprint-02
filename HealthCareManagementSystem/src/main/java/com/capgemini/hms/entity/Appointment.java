@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -36,6 +35,23 @@ public class Appointment {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_Id", referencedColumnName = "user_Id")
 	private Users users;
+	
+	
+//	@OneToMany(fetch = FetchType.EAGER, targetEntity = Doctor.class, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "appointment_Id", referencedColumnName = "appointment_Id")
+//	private List<Doctor> doctorlist;
+
+	public Appointment(Integer appointmentId, LocalDateTime appointmentDateAndTime, boolean approved, Users users
+			) {
+		super();
+		this.appointmentId = appointmentId;
+		this.appointmentDateAndTime = appointmentDateAndTime;
+		this.approved = approved;
+		this.users = users;
+		
+	}
+
+
 
 	public Integer getAppointmentId() {
 		return appointmentId;
@@ -72,16 +88,16 @@ public class Appointment {
 	@Override
 	public String toString() {
 		return "Appointment [appointmentId=" + appointmentId + ", appointmentDateAndTime=" + appointmentDateAndTime
-				+ ", approved=" + approved + ", users=" + users + "]";
+				+ ", approved=" + approved + ", users=" + users +  "]";
 	}
-
-	public Appointment(Integer appointmentId, LocalDateTime appointmentDateAndTime, boolean approved, Users users) {
-		super();
-		this.appointmentId = appointmentId;
-		this.appointmentDateAndTime = appointmentDateAndTime;
-		this.approved = approved;
-		this.users = users;
-	}
+//
+//	public Appointment(Integer appointmentId, LocalDateTime appointmentDateAndTime, boolean approved, Users users) {
+//		super();
+//		this.appointmentId = appointmentId;
+//		this.appointmentDateAndTime = appointmentDateAndTime;
+//		this.approved = approved;
+//		this.users = users;
+//	}
 
 	public Appointment() {
 		super();
