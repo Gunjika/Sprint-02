@@ -1,12 +1,14 @@
 package com.capgemini.hms.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.capgemini.hms.entity.Doctor;
+import com.capgemini.hms.exception.DoctorNotFoundException;
 import com.capgemini.hms.repository.DoctorDao;
 @Service
 @Transactional
@@ -29,12 +31,34 @@ public class DoctorServiceImpl implements DoctorService{
 		// TODO Auto-generated method stub
 		return doctorDao.findAll();
 	}
+	
 
 	@Override
 	public void deleteDoctor(int doctorId) {
 		doctorDao.deleteById(doctorId);
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean updateDoctor(Doctor doctor, int doctorId) {
+		// TODO Auto-generated method stub
+		doctor.setDoctorName(doctor.getDoctorName());
+		return doctorDao.save(doctor) != null;
+	}
+
+	@Override
+	public Doctor getDoctorById(int doctorId) {
+		// TODO Auto-generated method stub
+		Optional<Doctor> doctorDb=this.doctorDao.findById(doctorId);
+		if(doctorDb.isPresent()) {
+			return doctorDb.get();
+
+		}
+		else
+		{
+			throw new DoctorNotFoundException("Record not found with id : "+doctorId);
+		}
 	}
 
 //	@Override

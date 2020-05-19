@@ -1,4 +1,4 @@
-	package com.capgemini.hms.controller;
+package com.capgemini.hms.controller;
 
 import java.util.List;
 
@@ -13,7 +13,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +24,7 @@ import com.capgemini.hms.entity.Doctor;
 import com.capgemini.hms.exception.DoctorNotFoundException;
 import com.capgemini.hms.service.DoctorService;
 
-
+@CrossOrigin(origins="http://localhost:4200") 
 @RestController
 public class DoctorController {
 	@Autowired
@@ -55,8 +57,8 @@ public class DoctorController {
 		}
 	}
 	
-	@DeleteMapping(value = "/deleteDoctor/{id}")
-	public ResponseEntity<String> deleteTest(@Valid @RequestParam int doctorId)
+	@DeleteMapping(value = "/deleteDoctor/{doctorId}")
+	public ResponseEntity<String> deleteDoctor(@Valid @PathVariable int doctorId)
 			throws DoctorNotFoundException {
 		try {
 			doctorService.deleteDoctor(doctorId);
@@ -66,6 +68,32 @@ public class DoctorController {
 			throw new DoctorNotFoundException("Doctor ID not exists");
 		}
 	}
+	@CrossOrigin
+	@PutMapping("/updateDoctor/{doctorId}")
+	public ResponseEntity<String> updateDoctor(@Valid @RequestBody Doctor doctor, @PathVariable int doctorId,BindingResult bindingResult)throws DoctorNotFoundException
+	{
+		String err = "";
+		if (bindingResult.hasErrors()) {
+			List<FieldError> errors = bindingResult.getFieldErrors();
+			for (FieldError error : errors)
+				err += error.getDefaultMessage() + "<br/>";
+			throw new DoctorNotFoundException(err);
+		}
+		try
+		{
+			doctorService.updateDoctor(doctor, doctorId);
+			return new ResponseEntity<String>("Doctor added successfully", HttpStatus.OK);
+
+		}
+		catch (DataIntegrityViolationException ex) {
+			throw new DoctorNotFoundException("Doctor ID doesnot exists");
+		}
+	}
+	@GetMapping("/doctors/{doctorId}")
+	public ResponseEntity<Doctor> getDoctorById(@PathVariable int doctorId){
+		return ResponseEntity.ok().body(doctorService.getDoctorById(doctorId));
+	}
+//	
 
 	
 	

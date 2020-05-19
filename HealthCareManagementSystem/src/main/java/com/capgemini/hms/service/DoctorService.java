@@ -2,6 +2,8 @@ package com.capgemini.hms.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.capgemini.hms.entity.Doctor;
 
 public interface DoctorService {
@@ -16,5 +18,10 @@ public interface DoctorService {
 	List<Doctor> showallDoctor();
 	
 	void deleteDoctor(int doctorId);
+	
+	boolean updateDoctor(Doctor doctor,int doctorId);
+	
+	Doctor getDoctorById(int doctorId);
+	
 
 }

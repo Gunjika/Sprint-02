@@ -26,7 +26,7 @@ public class Doctor {
 	@Column(name="doctor_id")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="doctor_seq")
 	@SequenceGenerator(sequenceName="doctor_seq",initialValue=1010,allocationSize=1,name="doctor_seq")
-	private long doctorId;
+	private int doctorId;
 	
 	@NotEmpty(message="doctor name is mendatory")
 	@Column(name="doctorName")
@@ -45,7 +45,7 @@ public class Doctor {
 	@JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
 	private List<DoctorAppointment> docAppointment;
 
-	public Doctor(long doctorId, @NotEmpty(message = "doctor name is mendatory") String doctorName,
+	public Doctor(int doctorId, @NotEmpty(message = "doctor name is mendatory") String doctorName,
 			@NotEmpty(message = "doctor Specialization is mendatory") String doctorSpecialization,
 			@NotNull(message = "contact must be mendatory") int contactNo, List<DoctorAppointment> docAppointment) {
 		super();
@@ -56,7 +56,7 @@ public class Doctor {
 		this.docAppointment = docAppointment;
 	}
 
-	public long getDoctorId() {
+	public int getDoctorId() {
 		return doctorId;
 	}
 
@@ -68,7 +68,7 @@ public class Doctor {
 		this.docAppointment = docAppointment;
 	}
 
-	public void setDoctorId(long doctorId) {
+	public void setDoctorId(int doctorId) {
 		this.doctorId = doctorId;
 	}
 
@@ -107,7 +107,7 @@ public class Doctor {
 				+ doctorSpecialization + ", contactNo=" + contactNo + ", docAppointment=" + docAppointment + "]";
 	}
 
-	public Doctor(long doctorId, String doctorName, String doctorSpecialization, int contactNo) {
+	public Doctor(int doctorId, String doctorName, String doctorSpecialization, int contactNo) {
 		super();
 		this.doctorId = doctorId;
 		this.doctorName = doctorName;

@@ -22,17 +22,17 @@ public class DoctorAppointment {
 	@Column(name = "DocAppointment_Id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointment_seq")
 	@SequenceGenerator(sequenceName = "appointment_seq", initialValue=1000,allocationSize = 1, name = "appointment_seq")
-	private Integer DocAppointment_Id;
+	private int DocAppointment_Id;
 
 	@Column(name = "Appointment_DateAndTime")
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime appointmentDateAndTime;
 
-	public Integer getDocAppointment_Id() {
+	public int getDocAppointment_Id() {
 		return DocAppointment_Id;
 	}
 
-	public void setDocAppointment_Id(Integer docAppointment_Id) {
+	public void setDocAppointment_Id(int docAppointment_Id) {
 		DocAppointment_Id = docAppointment_Id;
 	}
 
