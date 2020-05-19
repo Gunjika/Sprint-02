@@ -82,7 +82,7 @@ public class DoctorController {
 		try
 		{
 			doctorService.updateDoctor(doctor, doctorId);
-			return new ResponseEntity<String>("Doctor added successfully", HttpStatus.OK);
+			return new ResponseEntity<String>("Doctor updated successfully", HttpStatus.OK);
 
 		}
 		catch (DataIntegrityViolationException ex) {
